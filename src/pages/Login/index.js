@@ -66,6 +66,7 @@ function Login() {
 
       console.log('logou');
     } catch (response) {
+      alert('Algo deu errado, tente novamente!, digite um email ou cpf e senha validos')
       console.log(response);
     }
   }

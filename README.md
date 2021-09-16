@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Front-end Case Mind Consulting
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação Web utilizando React, feito para cadastrar e gerenciar usuários por nivel de acesso, utilizando autenticação, conexão com o MondoDB.
+- Nivel de acesso administrativo (999) - Tem acesso a listagem, alteraração dos usuarios cadastrados, alteração do proprio perfil e deletar outros usuarios.
+- Nivel de acesso Comum (1) - Tem acesso somente a seu perfil podendo modifica-lo e a dashboard.
+- Nivel de acesso desabilitado (0) -  Não tem acesso a plataforma.
 
-## Available Scripts
+## Começando
 
-In the project directory, you can run:
+Necessario o backend rodando
 
-### `yarn start`
+### Requisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - Node
+ - React
+ - [Backend](https://github.com/DuarteVader/Backend-Crud.git)
+ 
+### Iniciando 
+```
+$ git clone https://github.com/DuarteVader/Frontend-Crud.git
+```
+```
+$ yarn
+```
+```
+$ yarn start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Configuração
 
-### `yarn test`
+- Baixar o Backend 
+- Iniciar o servidor 
+- Alterar o localhost
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## Testes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Faça um cadastro na apliacação e edite seu perfil. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Administradores podem listar e alterar os demais usuarios clicando no botão usuarios na dashboard e depois em alterar ou deletar.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Para desativar um usuario basta editar e colocar level 0 para ele. 
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Autores
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Victor Duarte
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Licença
+ 
+ - Nenhuma
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Agradecimentos
+Mind Consulting

@@ -1,65 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import './login.css';
+import './cadastroUser.css';
 import api from '../../services/api';
 
 import { MdEmail, MdHttps } from 'react-icons/md';
 import { HiEye, HiOutlineEyeOff } from 'react-icons/hi';
+import { RiAccountPinCircleFill } from "react-icons/ri";
+import { AiOutlineFieldNumber } from "react-icons/ai";
 
 import { useHistory } from 'react-router-dom';
 
-function Login() {
+
+
+function Cadastro() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [show, setShow] = useState(false);
-  const [level, setLevel] = useState(null);
-  const [teste, setTeste] = useState(false);
+  const [level, setLevel] = useState(1);
 
-  function linkCadastro() {
-    history.push('/cadastrar');
+  function linkLogar() {
+    history.push('/');
   }
 
+  useEffect(() => {
+    (async () => {
+      const token = await localStorage?.getItem?.('token');
+      const user = JSON?.parse?.(await localStorage?.getItem?.('user'));
+    })();
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
     setShow(!show);
   };
 
-  function linkUser() {
-    history.push('/homeuser');
-  }
-  function linkAdm() {
-    history.push('/homeadm');
-  }
-
-  function testinho() {
-    console.log('clicou');
-    if (teste === false) {
-      setTeste(true);
-    } else {
-      setTeste(false);
-    }
-  }
-
-  async function logar() {
+  async function cadastrar() {
     try {
-      const response = await api.post('/auth/login', {
+      const response = await api.post('/auth/cadastro', {
+        name,
         email,
         cpf,
         password,
+        level
       });
       const { user, token } = response.data;
       await localStorage.setItem('token', token);
       await localStorage.setItem('user', JSON.stringify(user));
-      await localStorage.setItem("id", user._id)
-      setLevel(user.level);
-      if (user.level === 1) {
-        linkUser();
-      } else {
-        linkAdm();
+      
+      if(response.status ===200){
+        window.location.href = '/';
+      }else{
+        alert('Ocorreu um erro. Por favor, tente novamente!');
       }
-      console.log('logou');
     } catch (response) {
       console.log(response);
     }
@@ -73,21 +67,29 @@ function Login() {
           src="https://mindconsulting.com.br/wp-content/uploads/2020/01/Mind-Branco-copy.png"
           alt="Login App"
         />
-        <button className="trocaCpfEmail" onClick={() => testinho()}> Trocar para Cpf ou Email </button>
-        {teste === true ? (
+          <div className="login-InputEmail">
+            <RiAccountPinCircleFill />
+            <input
+              type="usuario"
+              placeholder="Digite o Nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          
           <div className="login-InputEmail">
             <MdEmail />
 
             <input
               type="usuario"
               placeholder="Digite um Email"
-              value={cpf}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-        ) : (
           <div className="login-InputEmail">
-            <MdEmail />
+            <AiOutlineFieldNumber />
+
             <input
               type="usuario"
               placeholder="Digite um CPF"
@@ -95,8 +97,7 @@ function Login() {
               onChange={(e) => setCpf(e.target.value)}
             />
           </div>
-        )}
-        <div className="login-InputPassword">
+        <div className="login-InputEmail">
           <MdHttps />
           <input
             type={show ? 'text' : 'password'}
@@ -112,14 +113,10 @@ function Login() {
             )}
           </div>
         </div>
-
-        <button onClick={() => logar()}>Entrar</button>
-
-        <h4>Não tem cadastro?</h4>
-
-        <button onClick={() => {linkCadastro();}}>Cadastrar-se</button>
+        <button onClick={() => cadastrar()}>Cadastrar</button>
+        <button onClick={() => {linkLogar();}}>Logar</button>
       </div>
     </div>
   );
 }
-export default Login;
+export default Cadastro;

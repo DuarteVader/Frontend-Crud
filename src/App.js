@@ -1,12 +1,15 @@
 import React from 'react'
 import './App.css';
-
-import Login from '../src/pages/Login'
+import Dashboard from './pages/admin/dashboard/dashboard';
+import Login from './pages/Login';
+import dashboard from './pages/admin/dashboard/dashboard'
+import Routes from './routes';
 
 function App() {
   return (
     <div className="App">
-      <Login/>
+      {/* <Dashboard /> */}
+      <Routes />
     </div>
   );
 }

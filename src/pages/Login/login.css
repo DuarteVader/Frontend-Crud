@@ -13,9 +13,8 @@
     width: 30px;
 }
 .imagem {
-    margin-bottom: 50px;
-    width: 100px;
-    height: 100px;
+    margin-bottom: 25px;
+
 }
 .login-right {
     background-color: #29292E;
@@ -44,6 +43,7 @@
     color: #e1e1e6;
 }
 .login-InputEmail {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     color: gray;
@@ -119,4 +119,13 @@
     font-size: 40;
     cursor: pointer;
     margin-right: 15px;
+}
+.trocaCpfEmail button {
+    background:linear-gradient(to bottom, #fff 5%, #121214 100%);
+    box-shadow:inset 0px 1px 0px 0px #e3f1e3;
+    text-shadow:0px 1px 0px #121214;
+    height: 50px;
+    width: 50px;
+    
+    /* background:linear-gradient(to bottom, #46a7f5 5%, #86c6f8 100%); */
 }

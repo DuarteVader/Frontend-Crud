@@ -45,20 +45,25 @@ function Login() {
   async function logar() {
     try {
       const response = await api.post('/auth/login', {
-        email,
         cpf,
+        email,
         password,
       });
       const { user, token } = response.data;
       await localStorage.setItem('token', token);
       await localStorage.setItem('user', JSON.stringify(user));
       await localStorage.setItem("id", user._id)
+      await localStorage.setItem("level", user.level)
       setLevel(user.level);
       if (user.level === 1) {
         linkUser();
-      } else {
+      } else if( user.level === 999) {
         linkAdm();
+      } else {
+        window.alert('Usuario desativado')
+        
       }
+
       console.log('logou');
     } catch (response) {
       console.log(response);
@@ -74,23 +79,23 @@ function Login() {
           alt="Login App"
         />
         <button className="trocaCpfEmail" onClick={() => testinho()}> Trocar para Cpf ou Email </button>
-        {teste === true ? (
+        {teste === true? (
           <div className="login-InputEmail">
-            <MdEmail />
-
-            <input
-              type="usuario"
-              placeholder="Digite um Email"
-              value={cpf}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+          <MdEmail />
+          <input
+            type="usuario"
+            placeholder="Digite um Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
         ) : (
           <div className="login-InputEmail">
             <MdEmail />
             <input
               type="usuario"
               placeholder="Digite um CPF"
+              formatar = '999.999.999-99'
               value={cpf}
               onChange={(e) => setCpf(e.target.value)}
             />

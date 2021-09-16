@@ -146,8 +146,8 @@ export default function UsuariosListagem() {
                                                                     label="Usuário"
                                                                     color="primary"
                                                                   />:<Chip
-                                                                  label="Administrador"
-                                                                  color="secondary"
+                                                                  label="Desativado"
+                                                                  color="Disabled"
                                                                 />}</TableCell>
                               <TableCell align="center">
                                 <div className={classes.buttons}>

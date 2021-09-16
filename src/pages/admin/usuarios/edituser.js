@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import MenuAdmin from '../../../components/menu-admin';
+import MenuUser from '../../../components/menu-user';
 
 
 import Button from '@material-ui/core/Button';
@@ -35,9 +35,14 @@ export default function EditarUser() {
   const [email, setEmail] = useState('');
   const [level, setLevel] = useState('');
   const [id, setId] = useState('');
+  const [acesso, setAcesso] = useState('');
 
   useEffect(() => {
+    const acesso = localStorage.getItem("level")
+    setAcesso(acesso)
+    
     async function getUsuario(){
+      
       const id = localStorage.getItem("id")
       console.log(localStorage.getItem("user"))
       var response = await api.get('/projects/'+id);
@@ -52,41 +57,41 @@ export default function EditarUser() {
   },[])
 
   async function handleSubmit(){
- 
     const usuario = {
       name:name,
       email:email,
       cpf:cpf,
-      level:level,
       _id:id
     }
       if(name!==''&&email!==''&&level!==''&&cpf!==''){
         console.log("chegou")
         const response = await api.put('/projects/update/'+id,usuario);
-
-        if(response.status===200){
+        console.log(acesso)
+        if(response.status===200)
+        {
+          if(acesso == 999){
           window.location.href='/usuarios'
+          }else{
+          window.location.href='/editar'
+          }
+
         }else{
           alert('Erro ao atualizar o usuário!');
         }
       }else{
         alert('Por favor, preencha todos os dados!');
       }
-
-     
-
   }
   
   return (
-    <div className={classes.root}>
-      
-      <MenuAdmin title={'USUÁRIOS'}/>
+   
+   <div className={classes.root}>
+      <MenuUser title={'USUÁRIOS'}/>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
-            <Button style={{marginBottom:10,marginRight:5}} variant="contained" href={'/usuarios'}><ArrowBackIcon /> Voltar</Button>
               <Paper className={classes.paper}>
                 <h2>Atualização de Usuários</h2>
                 <Grid container spacing={3}>
@@ -127,6 +132,8 @@ export default function EditarUser() {
                       onChange={e => setCpf(e.target.value)}
                     />
                   </Grid>
+                  {
+                    acesso === 1 &&(                  
                   <Grid item xs={12} sm={3}>
                     <TextField
                       type="level"
@@ -134,12 +141,28 @@ export default function EditarUser() {
                       id="level"
                       name="level"
                       label="Nivel Acesso"
-                      
+                      disabled = "true"
                       autoComplete="Nivel Acesso"
                       value={level}
                       onChange={e => setLevel(e.target.value)}
                     />
                   </Grid>
+                    )}
+                    {
+                    acesso == 999 &&(                  
+                  <Grid item xs={12} sm={3}>
+                    <TextField
+                      type="level"
+                      required
+                      id="level"
+                      name="level"
+                      label="Nivel Acesso"
+                      autoComplete="Nivel Acesso"
+                      value={level}
+                      onChange={e => setLevel(e.target.value)}
+                    />
+                  </Grid>
+                    )}
                   <Grid item xs={12} sm={12}>
                   <Button variant="contained"  onClick={handleSubmit} className={classes.btnSuccess}>
                     <SaveIcon /> Salvar
